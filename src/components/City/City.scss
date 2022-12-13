@@ -1,0 +1,15 @@
+.city {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  & :nth-child(1n) {
+    width: 25%;
+    margin-right: 2vw;
+  }
+
+  & :last-child {
+    margin-right: 0;
+  }
+}
