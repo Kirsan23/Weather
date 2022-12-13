@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, Fragment } from 'react';
+import { useState, useEffect, useRef, Fragment, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { add, del, sort } from '../redux/slices/citiesSlice';
 import { City } from '../components';
@@ -11,17 +11,17 @@ export const WeatherForecasts = () => {
   const ref = useRef(null);
   const dispatch = useDispatch();
 
-  const outsideClickHandler = (event) => {
-    if (ref.current.contains(event.target)) return;
-
-    setClick(!click);
-  };
-
   useEffect(() => {
+    const outsideClickHandler = (event) => {
+      if (ref.current.contains(event.target)) return;
+
+      setClick(!click);
+    };
     if (click) {
       document.addEventListener('click', outsideClickHandler, true);
     }
 
+    console.log('test');
     return () => {
       document.removeEventListener('click', outsideClickHandler, true);
     };
@@ -36,11 +36,15 @@ export const WeatherForecasts = () => {
       </section>
       {data.citiesList[0].time && (
         <section className='date_wrapper'>
-            {data.citiesList[0].time.map((date, index) => (
-              <button key={date} className='select_btn' onClick={() => setSelectedDate(index)}>
-                {date}
-              </button>
-            ))}
+          {data.citiesList[0].time.map((date, index) => (
+            <button
+              key={date}
+              className='select_btn'
+              onClick={() => setSelectedDate(index)}
+            >
+              {date}
+            </button>
+          ))}
         </section>
       )}
       <section className='weather_forecast'>
