@@ -34,19 +34,6 @@ export const WeatherForecasts = () => {
       <section className='main_title_wrapper'>
         <h1 className='main_title'>Weather Forecast</h1>
       </section>
-      {data.citiesList[0].time && (
-        <section className='date_wrapper'>
-          {data.citiesList[0].time.map((date, index) => (
-            <button
-              key={date}
-              className='select_btn'
-              onClick={() => setSelectedDate(index)}
-            >
-              {date}
-            </button>
-          ))}
-        </section>
-      )}
       <section className='weather_forecast'>
         <div className='titles'>
           <div className='title_wrapper'>
@@ -105,6 +92,19 @@ export const WeatherForecasts = () => {
           </h2>
         )}
       </section>
+      {data.citiesList[0].time && (
+        <section className='date_wrapper'>
+          {data.citiesList[0].time.map((date, index) => (
+            <button
+              key={date}
+              className='select_btn'
+              onClick={() => setSelectedDate(index)}
+            >
+              {date}
+            </button>
+          ))}
+        </section>
+      )}
     </Fragment>
   );
 };
